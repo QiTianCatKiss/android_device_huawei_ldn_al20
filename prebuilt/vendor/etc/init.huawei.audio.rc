@@ -1,0 +1,9 @@
+#factory mode need can be rewrite this file for smartpa calib
+on property:ro.runmode=factory && property:sys.boot_completed=1
+    chown media audio /persist/audio/speaker_calibdata.bin
+
+
+on post-fs-data
+    mkdir /data/log/audio_logs 0771 audioserver audioserver
+    chmod 0644 /dev/tfa98xx_calibrate
+    chown audioserver audioserver /dev/tfa98xx_calibrate

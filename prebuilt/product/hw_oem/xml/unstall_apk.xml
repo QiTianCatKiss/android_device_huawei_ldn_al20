@@ -1,0 +1,19 @@
+<?xml	version="1.0"	encoding="utf-8"	?>	
+	<tag>
+		<apk>
+        <!-- BEGIN PN:DTS2017092112524, Added by zhangxin/zwx419917, 2017/09/23 -->
+        /data/hw_init/system/app/ContactsCamcard.apk;
+        <!-- END   PN:DTS2017092112524, Added by zhangxin/zwx419917, 2017/09/23 -->
+        <!-- BEGIN PN:AR0009LI9U, Added by zhangxin/zwx419917, 2017/12/05 -->
+        /cust/all/cn/app/ChnTelecomAutoReg.apk;
+        <!-- END   PN:AR0009LI9U, Added by zhangxin/zwx419917, 2017/12/05 -->
+        <!-- BEGIN PN:DTS2017092111620, Added by mifeilong/mwx429477, 2017/09/23 -->
+        /system/app/HwIms.apk;
+        <!-- END   PN:DTS2017092111620, Added by mifeilong/mwx429477, 2017/09/23 -->
+        /cust/all/cn/app/HwVDrive.apk;
+        /cust/demo/cn/app/HwVDrive.apk;
+        <!--DTS2017112207948 wangxiaojing wwx501854 20171123 begin-->
+        /system/priv-app/Tag.apk;
+        <!--DTS2017112207948 wangxiaojing wwx501854 20171123 end-->
+		</apk>
+	</tag>

@@ -1,0 +1,8 @@
+#  BEGIN PN: AR0009FB61  ,Modified by z00174729, 2017/08/23 
+# # sync DTS2016092002043
+service ril-daemon /vendor/bin/hw/rild
+    class main
+    user radio
+    group radio cache inet misc audio log readproc wakelock system oem_2901
+    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+#  END PN: AR0009FB61  ,Modified by z00174729, 2017/08/23 

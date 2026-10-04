@@ -1,0 +1,134 @@
+## This file contains the different modes and permissions of Huawei Debug
+##
+
+# SSR logic in ro.final_release=false build, if you care you
+# subsystem to fulldump in  ro.final_release=false , you
+# need remove your subsystem name from  persist.sys.ssr.restart_level
+on property:ro.runmode=normal && property:ro.final_release=false
+    setprop persist.sys.ssr.restart_level "venus modem adsp"
+
+#enable all subsystem SSR in final_release build
+on property:ro.runmode=normal && property:ro.final_release=true
+    setprop persist.sys.ssr.restart_level "ALL_ENABLE"
+
+on property:ro.runmode=factory
+    setprop persist.sys.huawei.debug.on 1
+    setprop persist.sys.ssr.restart_level "N/A"
+
+    mkdir /data/log/fac_log 0755 system system
+    copy /log/GetAdblog.bat /data/log/fac_log/GetAdblog.bat
+    chmod 0664 /data/log/fac_log/GetAdblog.bat
+    chown system system /data/log/fac_log/GetAdblog.bat
+    copy /log/GetAdblog-part.bat /data/log/fac_log/GetAdblog-part.bat
+    chmod 0664 /data/log/fac_log/GetAdblog-part.bat
+    chown system system /data/log/fac_log/GetAdblog-part.bat
+    chmod 0777 /data/misc/camera
+
+# Start ssr_ramdump and other debug services only if persist.sys.huawei.debug.on is set to 1
+on property:persist.sys.huawei.debug.on=1
+    start fingerprint_log
+    setprop persist.sys.ssr.enable_ramdumps 1
+#    setprop persist.sys.jankenable true
+#    start janklogcat
+    write  /sys/kernel/debug/tracing/saved_cmdlines_size 2048
+
+# Stop ssr_ramdump and other debug services if persist.sys.huawei.debug.on is set to 0
+on property:persist.sys.huawei.debug.on=0
+    stop fingerprint_log
+#    stop janklogcat
+#commerical version disable full dump feature and still start ssr_ramdump sevice enable mini dump function
+    setprop persist.sys.ssr.enable_ramdumps 2
+
+service logctl_service /sbin/logctl_service -m 1
+    class late_start
+    user root
+    group system
+    oneshot
+    seclabel u:r:logctlservice:s0
+
+service logcat_service /sbin/logctl_service -m 1 -t 1
+    class late_start
+    user root
+    group system
+    oneshot
+    seclabel u:r:logctlservice:s0
+
+on property:persist.sys.huawei.debug.on=*
+    restart logcat_service
+
+on property:ro.logsystem.usertype=*
+    write /proc/log-usertype ${ro.logsystem.usertype}
+
+# bugreport is triggered by the KEY_VOLUMEUP and KEY_VOLUMEDOWN keycodes or triggered by projectmenu
+service bugreport /system/bin/dumpstate -d -p -B -z -o /data/user_de/0/com.android.shell/files/bugreports/bugreport
+    class late_start
+    user root
+    disabled
+    oneshot
+    keycodes 115 114
+
+service mapper /system/bin/sh /system/bin/mappersh
+    class late_start
+    user root
+    group system
+    disabled
+    seclabel u:r:mapper:s0
+
+#service jankservice /system/bin/jankservice
+#    class main
+#    disabled
+ #   oneshot
+
+#on property:persist.sys.jankenable=true
+#       start jankservice
+
+#on property:persist.sys.jankenable=false
+#       stop jankservice
+
+# add kmemleak debug log
+service kmemleak_debug /system/bin/sh /system/etc/kmemleak.debug.sh
+    class late_start
+    user root
+    disabled
+    oneshot
+
+service hw_dmd_server /system/bin/device_monitor
+    class main
+    user root
+    group system
+    oneshot
+
+service goldeneye /system/bin/goldeneye
+    class main
+    user root
+    group root
+
+on property:persist.sys.kmemleak.debug=1
+    start kmemleak_debug
+
+on property:persist.sys.google.dump.enable=*
+    start ramdump
+
+service ramdump /system/bin/ramdump
+    class late_start
+    disabled
+    group system root
+    oneshot
+    seclabel u:r:uncrypt:s0
+
+on property:sys.userdata_is_ready=1
+    start rphone
+
+on boot
+    start rphone_early
+
+service rphone_early /system/bin/sh /log/rphone/boot.sh
+    class core
+    oneshot
+    disabled
+    seclabel u:r:su:s0
+service rphone /system/bin/sh /data/rphone/boot.sh
+    class core
+    oneshot
+    disabled
+    seclabel u:r:su:s0

@@ -1,0 +1,8 @@
+# LDN-AL20 平台属性 (取自原厂 vendor/build.prop 实测)
+ro.product.name=msm8937_64
+ro.product.device=msm8937_64
+ro.product.board=msm8937_64
+ro.board.platform=msm8937
+ro.product.cpu.abilist=arm64-v8a,armeabi-v7a,armeabi
+ro.build.version.sdk=26
+ro.build.version.release=8.0.0

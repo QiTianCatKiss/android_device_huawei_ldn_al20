@@ -1,0 +1,116 @@
+#BEGIN PN: DTS2018010504615 , Added by yangyang ywx524136, 2018/01/08
+ro.config.pre_apn_NotDel=true
+ro.config.pre_apn_unable=true
+#END PN: DTS2018010504615 , Added by yangyang ywx524136, 2018/01/08
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 begin 
+ro.build.id=HUAWEILDN-AL20
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 end 
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 begin 
+ro.product.board=LDN-AL10
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 end 
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 begin 
+ro.product.model=LDN-AL20
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 end 
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 begin 
+ro.product.name=LDN-AL20
+ro.boot.product.hardware.sku=LDN-AL20
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 end 
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 begin 
+ro.telephony.default_network=22
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 end 
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 begin 
+telephony.lteOnCdmaDevice=1
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 end 
+# AR0009K67O gwx424415 2018/2/07 System_5.0.0.20_02BM V52 begin
+ro.huawei.channel.path=/product/hw_oem/LDN-AL20/lib/weibo/
+ro.com.baidu.searchbox=/product/hw_oem/LDN-AL20/lib/BaiduSearch/
+ro.com.baidu.baidumap=/product/hw_oem/LDN-AL20/lib/BaiduMap/
+ro.alipay.channel.path=/product/hw_oem/LDN-AL20/lib/Alipay/huawei_alipay_antibrush
+ro.alipay.preinstall.path=/data/hw_init/version/region_comm/china/app/Alipay/Alipay.apk
+# AR0009K67O gwx424415 2018/2/07 System_5.0.0.20_02BM V52 end
+# DTS2015012102788 s00197516 2017/04/10 System_5.0.0.20_01H5 V61 begin 
+
+# DTS2015012102788 s00197516 2017/04/10 System_5.0.0.20_01H5 V61 end 
+# DTS2014030701675 s00197516 2017/04/10 System_5.0.0.20_01H5 V61 begin 
+ro.dual.sim.phone=true
+# DTS2014030701675 s00197516 2017/04/10 System_5.0.0.20_01H5 V61 end 
+#BEGIN PN: AR: AR000AGP6Q, l00370464, 2018/05/14
+ro.config.amr_wb_show_hd=true
+#END PN: AR: AR000AGP6Q, l00370464, 2018/05/14
+# DTS2017032405556 mwx368292 2017/08/25 System_5.0.0.20_01H5 V61 begin 
+ro.config.hw_volte_on=true
+# DTS2017032405556 mwx368292 2017/08/25 System_5.0.0.20_01H5 V61 end 
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 begin 
+ro.hwpp.qcril_cross_mapping=true
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 end 
+# AR00025DU5 lwx432800 2017/09/26 System_5.0.0.20_01H5 V61 begin 
+ro.config.dsds_mode=cdma_gsm
+# AR00025DU5 lwx432800 2017/09/26 System_5.0.0.20_01H5 V61 end 
+# DTS2017032405556 s00197516 2017/04/10 System_5.0.0.20_01H5 V61 begin 
+ro.config.hw_vtlte_on=true
+# DTS2017032405556 s00197516 2017/04/10 System_5.0.0.20_01H5 V61 end 
+# DTS2017101810246 lWX288597 2017/10/23 System_5.0.0.20_027G V59 begin 
+# DTS2017092106579 lWX288597 2017/10/08 System_5.0.0.20_0269 V16 begin 
+# DTS2017103104913 modified by zwx500854 begin
+ro.product.hardwareversion=HL4LDNM
+# DTS2017103104913 modified by zwx500854 end
+# DTS2017092106579 lWX288597 2017/10/08 System_5.0.0.20_0269 V16 end 
+# DTS2017101810246 lWX288597 2017/10/23 System_5.0.0.20_027G V59 end 
+# DTS2017032405556 lwx432800 2017/09/26 System_5.0.0.20_01H5 V61 begin 
+persist.dsds.enabled=true
+# DTS2017032405556 lwx432800 2017/09/26 System_5.0.0.20_01H5 V61 end 
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 begin 
+persist.radio.multisim.config=dsds
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 end 
+# DTS2016042506523 s00197516 2017/04/10 System_5.0.0.20_01H5 V61 begin 
+ro.config.ct_ecc_feature=true
+# DTS2016042506523 s00197516 2017/04/10 System_5.0.0.20_01H5 V61 end 
+# AR0008QBN2 mwx368292 2017/10/09 System_5.0.0.20_01H5 V61 begin 
+ro.multi.rild=true
+# AR0008QBN2 mwx368292 2017/10/09 System_5.0.0.20_01H5 V61 end 
+# DTS2015012105545 s00197516 2017/05/12 System_5.0.0.20_01H5 V61 begin 
+ro.config.glove_file_path=/sys/touch_screen/glove_func/signal_disparity
+# DTS2015012105545 s00197516 2017/05/12 System_5.0.0.20_01H5 V61 end 
+# AR0009K67O lwx288597 2017/11/24 System_5.0.0.20_02A9 V89 begin 
+ro.channel.cn.wps.moffice_eng=mul00172
+# AR0009K67O lwx288597 2017/11/24 System_5.0.0.20_02A9 V89 end 
+# AR0009K67O lwx288597 2017/11/24 System_5.0.0.20_02A9 V89 begin
+ro.com.changba.huawei.path=/product/hw_oem/LDN-AL20/lib/Changba/com.changba.pre.huawei
+# AR0009K67O lwx288597 2017/11/24 System_5.0.0.20_02A9 V89 end 
+# AR0009K67O lwx288597 2017/11/24 System_5.0.0.20_02A9 V89 begin 
+ro.channelId.vipshop=/product/hw_oem/LDN-AL20/lib/Vipshop/
+# AR0009K67O lwx288597 2017/11/24 System_5.0.0.20_02A9 V89 end 
+# AR0009K67O lwx288597 2017/11/24 System_5.0.0.20_02A9 V89 begin
+ro.com.ss.android.ugc.live=/product/hw_oem/LDN-AL20/lib/Huoshan/huoshan_huawei_yz1.channel
+# AR0009K67O lwx288597 2017/11/24 System_5.0.0.20_02A9 V89 end
+# AR0009K67O lwx288597 2017/11/24 System_5.0.0.20_02A9 V89 begin
+ro.channelId.com.smile.gifmaker=HUAWEI_KWAI
+# AR0009K67O lwx288597 2017/11/24 System_5.0.0.20_02A9 V89 end
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 begin 
+ro.config.attach_apn_enabled=true
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 end 
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 begin 
+ro.config.hwft_simrefresh=true
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 end 
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 begin 
+ro.hwpp_ds_fail=111,32,30
+# DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 end 
+# DTS2017111010636 lwx288597 2017/11/29 System_5.0.0.20_02AV V76 begin 
+ro.config.support_wcdma_modem1=true
+# DTS2017111010636 lwx288597 2017/11/29 System_5.0.0.20_02AV V76 end
+# DTS2017103106515 fwx379404 2017/12/07  begin
+ro.config.hw_ut_dynamic=true
+# DTS2017103106515 fwx379404 2017/12/07  end
+# DTS2017121807713 c00356998 2017/12/18  begin
+ro.config.hw_srlte=true
+# DTS2017121807713 c00356998 2017/12/18  end
+#BEGIN PN:AR0009LIM8 Added by ywx429482 2017/12/29
+ro.config.hw_media_flags=2
+#END PN:AR0009LIM8 Added by ywx429482 2017/12/29
+#BEGIN PN:AR0009K4JF Added by zwx419918 2018/1/12
+ro.config.marketing_name=LDN-AL20
+#END PN:AR0009K4JF Added by zwx419918 2018/1/12
+# BEGIN PN:DTS2018012402480, Added by swx503282, 2018/01/24
+ro.product.fingerprintName=HUAWEI-LONDON
+# END PN:DTS2018012402480, Added by swx503282, 2018/01/24
+ro.product.member.level=10010

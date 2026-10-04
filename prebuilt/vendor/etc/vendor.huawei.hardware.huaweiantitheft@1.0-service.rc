@@ -1,0 +1,4 @@
+service huaweiantitheft-hal-1-0 /vendor/bin/hw/vendor.huawei.hardware.huaweiantitheft@1.0-service
+    class hal
+    user system
+    group system

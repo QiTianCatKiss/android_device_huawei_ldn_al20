@@ -1,0 +1,8 @@
+on property:ro.config.fm.disable=false
+    start fm-1-0
+
+service fm-1-0 /vendor/bin/hw/vendor.huawei.hardware.fm@1.0-service
+    class hal
+    user system
+    group system
+    disabled

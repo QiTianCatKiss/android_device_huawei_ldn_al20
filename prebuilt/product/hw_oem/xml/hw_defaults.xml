@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources>
+    <!--DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 begin-->
+    <string hw_def_theme="/data/hw_init/version/region_comm/china/themes/Positive.hwt" reset="true"/>
+    <!--DTS2017092601757 lWX288597 2017/09/27 System_5.0.0.20_0261 V3 end-->
+    <string hw_theme_sort="Positive##Bloom##Extreme" reset="true"/>
+    <!--BEGIN PN:AR0009LFD4, Added by zwx500854, 2018/1/15-->
+    <string custom_certify_picture="/product/etc/media/LDN-AL20.png" reset="true" />
+    <!--END PN:AR0009LFD4, Added by zwx500854, 2018/1/15-->
+    <!--AR000AGP6Q l00370464 2018/05/14  begin-->
+    <integer settings.system.wb_show_hd="0" reset="true"/>
+    <!--AR000AGP6Q l00370464 2018/05/14  end-->
+</resources>

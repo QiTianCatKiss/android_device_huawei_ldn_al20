@@ -1,0 +1,93 @@
+#
+# recovery.fstab —— 华为畅享 8 (LDN-AL20)
+#
+# 分区表实测自原厂 GPT (gpt_main0.bin, 512 字节/扇区), 全部 55 个具名分区:
+#
+#   #0  dsp              16.00 MB     #28 rrecord          8.00 MB
+#   #1  keystore          0.50 MB     #29 nff               8.00 MB
+#   #2  frp               0.50 MB     #30 mcfg              4.00 MB
+#   #3  mota              0.50 MB     #31 modem            96.00 MB
+#   #4  dip               1.00 MB     #32 erecovery_kernel  56.00 MB
+#   #5  syscfg            0.50 MB     #33 erecovery_ramdisk 32.00 MB
+#   #6  lksecapp          0.12 MB     #34 erecovery_vendor  16.00 MB
+#   #7  apdp              0.25 MB     #35 kernel            56.00 MB
+#   #8  msadp             0.25 MB     #36 ramdisk           16.00 MB
+#   #9  dpo               0.01 MB     #37 recovery_ramdisk  32.00 MB
+#   #10 fsc               0.00 MB     #38 recovery_vendor   16.00 MB
+#   #11 ssd               0.01 MB     #39 cache            128.00 MB
+#   #12 bootfail_info     2.00 MB     #40 odm              32.00 MB
+#   #13 pad0              7.09 MB     #41 persist          32.00 MB
+#   #14 aboot             4.00 MB     #42 log              64.00 MB
+#   #15 cmnlib            1.00 MB     #43 patch            32.00 MB
+#   #16 cmnlib64          1.00 MB     #44 version          32.00 MB
+#   #17 keymaster          2.00 MB     #45 vendor          552.00 MB
+#   #18 pad1             10.50 MB     #46 product         168.00 MB
+#   #19 fsg               4.00 MB     #47 cust            192.00 MB
+#   #20 DDR               0.03 MB     #48 system         2336.00 MB
+#   #21 sec               0.02 MB     #49 preas           136.00 MB
+#   #22 devinfo           1.00 MB     #50 preavs           16.00 MB
+#   #23 limits            0.03 MB     #51 prets           112.00 MB
+#   #24 pad2              9.42 MB     #52 pretvs            8.00 MB
+#   #25 oeminfo          64.00 MB     #53 userdata      (运行时填充)
+#   #26 misc              4.00 MB
+#   #27 modemst1          4.00 MB
+#
+# 与 Honor 7A (AUM-L29) 参考树的关键差异:
+#   1. 无 /version 挂载点用途 —— LDN 的 version 分区是 EMUI 版本存储, 不是 A-only 的 /version
+#   2. 启动分区名是 kernel, 不是 boot
+#   3. recovery 是三段式 (kernel + recovery_ramdisk + recovery_vendor)
+#   4. 独有 cust / preas / preavs / prets / pretvs / oeminfo 等华为分区
+#
+# <src>                                             <mnt_point>  <type>  <mnt_flags and options>                    <fs_mgr_flags>
+# -----------------------------------------------------------------------------------------------------------------------
+
+# ---------- 只读系统分区 ----------
+/dev/block/bootdevice/by-name/system      /system       ext4   defaults                                    defaults
+/dev/block/bootdevice/by-name/vendor      /vendor       ext4   defaults                                    defaults
+/dev/block/bootdevice/by-name/product     /product      ext4   defaults                                    defaults
+/dev/block/bootdevice/by-name/odm         /odm          ext4   defaults,context=u:object_r:odm_file:s0       defaults
+
+# ---------- 华为 OEM 配置分区 ----------
+# cust 存华为出厂时的区域/运营商/主题配置 (AL20 实测存在, 192MB, ext4)
+/dev/block/bootdevice/by-name/cust        /cust         ext4   defaults                                    defaults
+
+# ---------- 内核 / recovery ----------
+# 注意: LDN-AL20 是华为 eROS 布局, 启动分区叫 kernel, 没有标准 /boot 分区
+/dev/block/bootdevice/by-name/kernel       /kernel       emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/ramdisk      /ramdisk      emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/recovery_ramdisk  /recovery_ramdisk  emmc  defaults                            defaults
+/dev/block/bootdevice/by-name/recovery_vendor   /recovery_vendor   emmc  defaults                            defaults
+/dev/block/bootdevice/by-name/erecovery_kernel  /erecovery_kernel  emmc  defaults                           defaults
+/dev/block/bootdevice/by-name/erecovery_ramdisk /erecovery_ramdisk emmc  defaults                           defaults
+/dev/block/bootdevice/by-name/erecovery_vendor  /erecovery_vendor  emmc  defaults                           defaults
+
+# ---------- 引导链 / 固件 ----------
+/dev/block/bootdevice/by-name/aboot       /aboot        emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/sbl1        /sbl1         emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/rpm         /rpm          emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/keymaster   /keymaster    emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/dsp         /dsp          emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/modem       /firmware     vfat   defaults                                    defaults
+/dev/block/bootdevice/by-name/modemst1    /persist      emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/modemst2    /cache2       emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/persist     /persist2     emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/log         /log          vfat   defaults                                    defaults
+
+# ---------- bootloader 状态 (TWRP 高级菜单读取) ----------
+/dev/block/bootdevice/by-name/misc         /misc         emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/devinfo     /devinfo      emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/oeminfo     /oeminfo      emmc   defaults                                    defaults
+/dev/block/bootdevice/by-name/frp         /frp          emmc   defaults                                    defaults
+
+# ---------- 缓存 ----------
+/dev/block/bootdevice/by-name/cache        /cache        ext4   defaults                                    defaults
+
+# ---------- 用户数据 ----------
+# EMUI 8.0 默认 f2fs; 若格式化后识别为 ext4, TWRP 会走下面 ext4 那行的 fallback
+# encryptable: 允许 TWRP 在解密失败时提示用户输入密码 (TWRP 3.x 语义)
+/dev/block/bootdevice/by-name/userdata    /data         f2fs   nosuid,nodev,noatime,inline_xattr,data_flush     wait,check,encryptable,formattable,length=-16384
+/dev/block/bootdevice/by-name/userdata    /data         ext4   nosuid,nodev,noatime,noauto_da_alloc            wait,check,encryptable,formattable
+
+# ---------- 外部存储 ----------
+# LDN-AL20 无 SD 卡槽, 只有 USB OTG
+/dev/block/sda                            /usb-otg      auto   defaults                                     flags=display="USB OTG";storage;wipeingui;removable

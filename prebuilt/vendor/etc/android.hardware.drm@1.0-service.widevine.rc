@@ -1,0 +1,14 @@
+# set persist.sys.restart.mediadrm defult property false
+setprop persist.sys.restart.mediadrm false
+
+service drm-widevine-hal-1-0 /preavs/bin/hw/android.hardware.drm@1.0-service.widevine
+    class hal
+    user media
+    group mediadrm drmrpc
+    ioprio rt 4
+    writepid /dev/cpuset/foreground/tasks /dev/stune/foreground/tasks
+    setenv LD_LIBRARY_PATH /preavs/lib
+
+on property:persist.sys.restart.mediadrm=true
+    restart drm-widevine-hal-1-0
+    setprop persist.sys.restart.mediadrm false

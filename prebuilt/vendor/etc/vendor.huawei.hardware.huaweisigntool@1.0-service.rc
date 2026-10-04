@@ -1,0 +1,4 @@
+service huaweisigntool-hal-1-0 /vendor/bin/hw/vendor.huawei.hardware.huaweisigntool@1.0-service
+    class hal
+    user system
+    group system
