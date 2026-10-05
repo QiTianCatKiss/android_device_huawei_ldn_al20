@@ -70,13 +70,34 @@ make recoveryimage
 out/target/product/ldn_al20/recovery.img
 ```
 
-刷入方式（recovery 模式）：
+> ## ⚠️ 重要：`make recoveryimage` 的产物**不能直接刷本机**
+>
+> 华为畅享 8（LDN-AL20）使用的是**华为 eROS 三段式** recovery 分区布局，而
+> `make recoveryimage` 产出的是**标准 AOSP boot image 格式**。两者 header 不同，
+> 直接 `fastboot flash recovery recovery.img` **会刷不进分区**。
+>
+> 刷机前必须先转换为 eROS 格式。实测可刷镜像的 header：
+>
+> | 字段 | 值 |
+> | --- | --- |
+> | `kernel_size` | `0`（纯 ramdisk） |
+> | `ramdisk_addr` | `0x11000000` |
+> | `tags_addr` | `0x10000100` |
+> | `kernel_addr` | `0x10008000` |
+> | `second_addr` | `0x10f00000` |
+> | `page_size` | `2048` |
+> | `cmdline` | `buildvariant=eng` |
+>
+> 另有严格约束：`file_size == align2048(2048 + ramdisk_size)`。
+>
+> 注意 `BoardConfig.mk` 里的 `BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02000000
+> --tags_offset 0x00000100` 是 **AOSP 标准 recovery.img 的偏移，不是 eROS 刷机用的**，
+> 该变量由 `build/make/core/Makefile` 消费以生成标准镜像，**请勿为了刷机去改它**。
+> eROS 转换应在 `make recoveryimage` 之后作为独立步骤进行。
+>
+> 建议先 `fastboot boot <image>` 临时引导验证，确认能启动再考虑写入分区。
 
-```bash
-fastboot flash recovery recovery.img
-```
-
-> 若要解密 `/data`，需确保设备已刷入与该机型匹配的 **TWRP 3.x + Android 8.1 官方版本**。跨大版本（Android 9+/TWRP 4.x）解密 FBE 用户数据需要额外处理 keymaster / gatekeeper HAL 兼容性。
+若要解密 `/data`，需确保设备已刷入与该机型匹配的 **TWRP 3.x + Android 8.1 官方版本**。跨大版本（Android 9+/TWRP 4.x）解密 FBE 用户数据需要额外处理 keymaster / gatekeeper HAL 兼容性。
 
 ## 设备树补丁说明
 
